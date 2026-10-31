@@ -218,3 +218,46 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# ============================================================
+# Proyecto La Rosaura - archivos locales y datos satelitales
+# ============================================================
+
+# Entornos virtuales
+.venv/
+venv/
+
+# Variables de entorno y credenciales
+.env
+.env.*
+*.key
+credentials*
+
+# Datos satelitales y productos pesados
+*.tif
+*.tiff
+*.jp2
+*.SAFE/
+*.zip
+*.7z
+
+# Datos crudos e intermedios
+data/raw/*
+data/interim/*
+
+# Mantener archivos de estructura
+!data/raw/.gitkeep
+!data/interim/.gitkeep
+
+# Modelos entrenados
+outputs/models/*
+!outputs/models/.gitkeep
+
+# Temporales de geoprocesamiento
+*.aux.xml
+*.ovr
+*.vrt
+
+# Sistema operativo
+Thumbs.db
+Desktop.ini
