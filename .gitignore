@@ -261,3 +261,7 @@ outputs/models/*
 # Sistema operativo
 Thumbs.db
 Desktop.ini
+
+# Excepción: geometría maestra reproducible de La Rosaura
+!data/raw/vectores/
+!data/raw/vectores/potreros_la_rosaura.geojson

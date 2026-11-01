@@ -1,0 +1,12 @@
+pandas
+numpy
+requests
+boto3
+rasterio
+geopandas
+shapely
+matplotlib
+scikit-learn
+xgboost
+shap
+jupyter
