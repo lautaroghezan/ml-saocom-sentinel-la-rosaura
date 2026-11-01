@@ -208,3 +208,65 @@ El producto final será, por lo tanto, un **prototipo metodológico y computacio
 **En desarrollo — Proyecto Final de Ciencia de Datos II**
 
 La presente versión corresponde a la construcción de la prueba de concepto en entorno de laboratorio.
+
+## Estado de los datos — Campaña 2024/25
+
+El proyecto utiliza información satelital real correspondiente a la campaña agrícola 2024/25 del establecimiento La Rosaura, Tandil, provincia de Buenos Aires. La unidad espacial de referencia está constituida por 16 lotes (L01–L16), cuya geometría fue validada y totaliza aproximadamente 165,36 ha.
+
+### SAOCOM
+
+Se identificaron 13 adquisiciones SAOCOM únicas correspondientes al período comprendido entre el 06/08/2024 y el 18/03/2025.
+
+Los productos utilizados corresponden a nivel de procesamiento L1D y polarización cuádruple:
+
+- HH
+- HV
+- VH
+- VV
+
+La auditoría de los productos confirmó la disponibilidad de las cuatro polarizaciones para las 13 adquisiciones y un sistema de referencia espacial homogéneo (EPSG:32721).
+
+Los productos declaran `Sigma0Type = AMPLITUDE`. Para el análisis radiométrico, los valores válidos de amplitud se transformaron a sigma cero en decibeles mediante:
+
+`σ0_dB = 20 × log10(A)`
+
+El dataset SAOCOM a escala de lote contiene 832 registros:
+
+`13 fechas × 16 lotes × 4 polarizaciones = 832 observaciones`
+
+Para cada combinación fecha–lote–polarización se calcularon estadísticas descriptivas y robustas, incluyendo mediana, media, percentiles 25 y 75, rango intercuartílico, desviación estándar y porcentaje de píxeles válidos.
+
+El control de calidad mostró cobertura válida elevada en toda la serie. Los menores porcentajes se observaron en algunas combinaciones HV/VH, con un mínimo cercano al 88 %, por lo que estas observaciones fueron conservadas sin imputación de valores faltantes.
+
+### Sentinel-2
+
+Para Sentinel-2 se utiliza la colección Level-2A (reflectancia de superficie).
+
+El catálogo correspondiente al período 01/08/2024–30/06/2025 contiene:
+
+- 73 productos Sentinel-2 L2A.
+- 69 fechas únicas.
+- Primera observación: 05/08/2024.
+- Última observación: 26/06/2025.
+
+La diferencia entre productos y fechas se debe a que cuatro fechas presentan dos productos disponibles.
+
+El porcentaje global de nubosidad informado por cada producto se considera únicamente un indicador preliminar. La selección definitiva de observaciones se realizará mediante la Scene Classification Layer (SCL), evaluando nubes, sombras y píxeles válidos específicamente sobre los 16 lotes de La Rosaura.
+
+### Estado actual del procesamiento
+
+**SAOCOM:** catálogo, geometría, auditoría radiométrica, control de calidad y construcción del dataset multitemporal por lote completados.
+
+**Sentinel-2:** catálogo temporal construido. Se encuentra pendiente el procesamiento sistemático de SCL para determinar la cobertura válida local, seguido de la extracción de bandas e índices espectrales.
+
+Una vez finalizado el procesamiento independiente de ambos sensores se realizará la armonización temporal y la construcción del dataset multisensor.
+
+La estrategia experimental comparará:
+
+- **M1:** Sentinel-2.
+- **M2:** SAOCOM.
+- **M3:** Sentinel-2 + SAOCOM.
+
+La identificación de ambientes mediante clustering tendrá carácter exploratorio. Los grupos obtenidos serán tratados como pseudo-etiquetas (por ejemplo, Ambiente A, B y C) y no como categorías de potencial productivo hasta contar con validación agronómica independiente.
+
+El alcance actual corresponde a una prueba de concepto experimental (TRL 3). La validación con datos de campo constituye una etapa posterior del proyecto.
