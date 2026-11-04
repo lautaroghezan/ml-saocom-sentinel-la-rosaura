@@ -1,0 +1,2 @@
+fecha,producto_catalogado,metadata_recibida,metadata_escenas,archivo_tiff
+2024-09-04,S2A_MSIL2A_20240904T134701_N0511_R024_T21HTU_20240904T212846,True,"{""adquisiciones"": [{""fecha"": null, ""escenas"": [{""id"": null, ""fecha"": ""2024-09-04T14:03:01.786Z"", ""cobertura_nubes"": 0}]}]}",data\interim\sentinel2\reflectancias\S2_2024-09-04_20m.tif
