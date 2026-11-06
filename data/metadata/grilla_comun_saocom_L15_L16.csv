@@ -1,0 +1,3 @@
+lote_id,resolucion_m,columnas_grilla,filas_grilla,celdas_dentro_lote,origen_x,origen_y,crs
+L15,44.0,15,16,52,293260.0,5879500.0,EPSG:32721
+L16,44.0,15,16,55,293260.0,5879500.0,EPSG:32721

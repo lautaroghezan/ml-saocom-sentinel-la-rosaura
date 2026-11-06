@@ -230,7 +230,7 @@ Los productos declaran `Sigma0Type = AMPLITUDE`. Para el análisis radiométrico
 
 `σ0_dB = 20 × log10(A)`
 
-El dataset SAOCOM a escala de lote contiene 832 registros:
+El dataset SAOCOM agregado a escala de lote contiene 832 registros. Adicionalmente, se construyó un dataset intralote de 11.658 registros:
 
 `13 fechas × 16 lotes × 4 polarizaciones = 832 observaciones`
 
@@ -251,15 +251,15 @@ El catálogo correspondiente al período 01/08/2024–30/06/2025 contiene:
 
 La diferencia entre productos y fechas se debe a que cuatro fechas presentan dos productos disponibles.
 
-El porcentaje global de nubosidad informado por cada producto se considera únicamente un indicador preliminar. La selección definitiva de observaciones se realizará mediante la Scene Classification Layer (SCL), evaluando nubes, sombras y píxeles válidos específicamente sobre los 16 lotes de La Rosaura.
+El porcentaje global de nubosidad informado por cada producto se considera únicamente un indicador preliminar. El filtrado local de observaciones ya fue implementado mediante la Scene Classification Layer (SCL) y dataMask, sobre las celdas correspondientes a los 16 lotes de La Rosaura.
 
 ### Estado actual del procesamiento
 
 **SAOCOM:** catálogo, geometría, auditoría radiométrica, control de calidad y construcción del dataset multitemporal por lote completados.
 
-**Sentinel-2:** catálogo temporal construido. Se encuentra pendiente el procesamiento sistemático de SCL para determinar la cobertura válida local, seguido de la extracción de bandas e índices espectrales.
+**Sentinel-2:** catálogo temporal, filtrado sistemático mediante SCL y dataMask, extracción de índices espectrales y construcción del dataset intralote completados. El dataset contiene 285.177 registros, de los cuales 132.206 presentan índices válidos.
 
-Una vez finalizado el procesamiento independiente de ambos sensores se realizará la armonización temporal y la construcción del dataset multisensor.
+El procesamiento intralote independiente de ambos sensores se encuentra completado. La armonización espacial y temporal entre SAOCOM y Sentinel-2, y la construcción del dataset multisensor integrado, constituyen las siguientes etapas pendientes.
 
 La estrategia experimental comparará:
 
@@ -270,3 +270,164 @@ La estrategia experimental comparará:
 La identificación de ambientes mediante clustering tendrá carácter exploratorio. Los grupos obtenidos serán tratados como pseudo-etiquetas (por ejemplo, Ambiente A, B y C) y no como categorías de potencial productivo hasta contar con validación agronómica independiente.
 
 El alcance actual corresponde a una prueba de concepto experimental (TRL 3). La validación con datos de campo constituye una etapa posterior del proyecto.
+
+---
+
+## Actualización metodológica — análisis intralote 2024–2025
+
+### Alcance temporal y espacial
+
+La prueba de concepto correspondiente a Ciencia de Datos II utiliza
+exclusivamente observaciones históricas SAOCOM y Sentinel-2 de 2024–2025.
+
+El área de estudio comprende 16 lotes (L01–L16) del establecimiento
+La Rosaura, Tandil, provincia de Buenos Aires.
+
+La unidad principal de análisis para la identificación de patrones
+espaciales es la celda georreferenciada dentro de cada lote.
+
+Los análisis agregados por lote se conservan como referencia descriptiva
+y como estrategia alternativa de análisis.
+
+La campaña 2026–2027 no integra los datos ni la validación de esta entrega.
+
+### Dataset SAOCOM intralote
+
+Se construyó el archivo:
+
+`data/processed/dataset_saocom_intralote.csv`
+
+Contiene 11.658 registros correspondientes a 13 adquisiciones
+históricas, 16 lotes y observaciones espaciales intralote.
+
+Incluye coordenadas UTM y retrodispersión expresada en decibeles
+para las polarizaciones HH, HV, VH y VV.
+
+La transformación radiométrica aplicada a los valores de amplitud
+válidos es `20 * log10(A)`, conforme a la interpretación provisional
+de los metadatos disponibles. La calibración radiométrica definitiva
+requiere corroboración adicional con la documentación del producto.
+
+El espaciamiento observado de los píxeles SAOCOM es aproximadamente
+43–44 metros. Este valor no debe confundirse con la resolución
+espacial efectiva del instrumento, que no se considera verificada.
+
+Las adquisiciones SAOCOM de diferentes fechas no necesariamente
+comparten la misma grilla espacial. Las comparaciones por celda
+requieren procedimientos explícitos de alineación espacial.
+
+### Dataset Sentinel-2 intralote
+
+Se construyó el archivo:
+
+`data/processed/dataset_sentinel2_intralote.csv`
+
+Contiene 285.177 registros, correspondientes a 4.133 celdas
+espaciales y 69 fechas.
+
+Se utilizaron observaciones ópticas con grilla de 20 metros y
+máscaras de calidad basadas en SCL y dataMask.
+
+Los índices analizados incluyen NDVI, NDRE y NDMI.
+
+Se registraron 132.206 observaciones válidas de índices,
+equivalentes aproximadamente al 46,36 % de los registros.
+
+La disponibilidad temporal es heterogénea debido principalmente
+a las condiciones de observación óptica y al filtrado de calidad.
+
+El dataset intralote fue contrastado con los resultados agregados
+por lote y con los índices calculados previamente.
+
+### Análisis exploratorio de cambios temporales
+
+Se examinaron cambios espaciales y temporales en los lotes
+L15 y L16 durante enero y febrero de 2025.
+
+Entre el 29 de enero y el 14 de febrero de 2025,
+la polarización HH de SAOCOM registró cambios medianos de:
+
+- L15: -6,431 dB.
+- L16: -6,093 dB.
+
+Las proporciones de celdas comparables con descenso fueron:
+
+- L15: 92,31 %.
+- L16: 89,09 %.
+
+Las polarizaciones HV, VH y VV también mostraron descensos
+predominantes, aunque de diferente magnitud.
+
+Estos cambios son compatibles con modificaciones importantes
+de las condiciones observadas por el radar, pero no constituyen
+evidencia suficiente para identificar una cosecha, un cultivo
+específico o una causa agronómica determinada.
+
+Las disminuciones del NDVI observadas en fechas próximas
+constituyen evidencia óptica complementaria, no validación
+independiente de una intervención agrícola.
+
+### Estrategia de Machine Learning
+
+Se mantiene el diseño experimental:
+
+- M1: atributos Sentinel-2.
+- M2: atributos SAOCOM.
+- M3: atributos combinados Sentinel-2 y SAOCOM.
+
+La identificación inicial de ambientes se realizará mediante
+aprendizaje no supervisado.
+
+Los grupos obtenidos serán tratados como agrupamientos
+estadísticos o ambientes candidatos, sin atribuirles
+automáticamente niveles de productividad.
+
+Las pseudo-etiquetas derivadas del clustering podrán utilizarse
+para experimentos supervisados de clasificación multiclase.
+
+Las métricas de clasificación, incluido Macro F1-score,
+evaluarán la capacidad de reproducir dichas pseudo-etiquetas,
+no la exactitud agronómica de los ambientes.
+
+Se deberán controlar las dependencias espaciales y temporales
+en el diseño de las particiones de entrenamiento y evaluación,
+así como evitar filtraciones de información al generar
+pseudo-etiquetas y seleccionar atributos.
+
+La comparación entre modelos monofuente y multisensor
+deberá realizarse sobre unidades y particiones comparables.
+
+### Reproducibilidad y limitaciones
+
+Los datasets procesados, scripts, tablas, figuras y metadatos
+constituyen los principales productos reproducibles del proyecto.
+
+Los archivos satelitales originales de gran tamaño se mantienen
+fuera del repositorio Git convencional.
+
+La reproducción integral desde los productos originales requiere
+disponer de esos archivos, sus metadatos y las dependencias
+computacionales correspondientes.
+
+No se dispone en esta etapa de etiquetas de cultivo verificadas
+en campo, rendimientos georreferenciados ni mediciones agronómicas
+independientes que permitan validar el significado productivo
+de los agrupamientos.
+
+La cantidad de celdas y fechas no equivale a una cantidad
+idéntica de observaciones estadísticamente independientes.
+
+### Trabajo futuro
+
+Una vez concluida la prueba de concepto histórica,
+se prevé aplicar el procedimiento desarrollado a imágenes
+de la campaña 2026–2027 y contrastar los ambientes candidatos
+con observaciones agronómicas georreferenciadas.
+
+También podrá evaluarse la disponibilidad y pertinencia
+de productos SAOCOM con otras modalidades de adquisición,
+incluida Stripmap, sujeto a su disponibilidad y características
+técnicas verificadas.
+
+Estas actividades no forman parte de los resultados
+de la entrega actual.

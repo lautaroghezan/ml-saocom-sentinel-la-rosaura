@@ -1,0 +1,2 @@
+fecha,error
+2024-09-04,"HTTP 400: {""error"":{""status"":400,""reason"":""Bad Request"",""message"":""Failed to evaluate script!\nevalscript.js:74: TypeError: tile.date.toISOString is not a function\n                            ? tile.date.toISOString()\n                                        ^\nTypeError: tile.date.toISOString is not a function\n    at evalscript.js:74:41\n    at Array.map (native)\n    at evalscript.js:70:47\n    at Array.map (native)\n    at updateOutputMetadata (evalscript.js:65:46)\n"",""code"":""COMMON_EXCEPTION""}}"

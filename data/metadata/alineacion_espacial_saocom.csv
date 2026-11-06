@@ -1,0 +1,14 @@
+﻿producto,fecha,origen_x,origen_y,paso_x,paso_y,limite_x,limite_y,proyeccion_parametros
+EOL1DSARSAO1A14056208,2024-OCT-09,168777.45,5981593.95,43.644,-42.301,367664.95,5656084.21,+proj=utm +zone=21 +ellps=WGS84 +datum=WGS84 +units=m +no_defs +x_0=268413 +y_0=-4.17987e+06 +over +south
+EOL1DSARSAO1A14065611,2025-JAN-13,174413.34,5972385.91,43.544,-42.326,365877.2,5671743.21,+proj=utm +zone=21 +ellps=WGS84 +datum=WGS84 +units=m +no_defs +x_0=269972 +y_0=-4.17655e+06 +over +south
+EOL1DSARSAO1A14065630,2025-FEB-14,179846.77,5997555.7,43.489,-42.302,370805.34,5697087.63,+proj=utm +zone=21 +ellps=WGS84 +datum=WGS84 +units=m +no_defs +x_0=275143 +y_0=-4.15135e+06 +over +south
+EOL1DSARSAO1A14065706,2025-MAR-18,172121.14,5993570.58,43.611,-42.288,370636.6,5668249.82,+proj=utm +zone=21 +ellps=WGS84 +datum=WGS84 +units=m +no_defs +x_0=271587 +y_0=-4.16774e+06 +over +south
+EOL1DSARSAO1A14065934,2025-JAN-29,172629.22,5994688.55,43.604,-42.286,371160.44,5669422.86,+proj=utm +zone=21 +ellps=WGS84 +datum=WGS84 +units=m +no_defs +x_0=272098 +y_0=-4.16654e+06 +over +south
+EOL1DSARSAO1A14065953,2025-MAR-02,169810.87,5980686.28,43.636,-42.298,368704.3,5655073.19,+proj=utm +zone=21 +ellps=WGS84 +datum=WGS84 +units=m +no_defs +x_0=269469 +y_0=-4.18077e+06 +over +south
+EOL1DSARSAO1A14948797,2024-NOV-10,168181.14,5978253.63,43.652,-42.304,366971.15,5652891.69,+proj=utm +zone=21 +ellps=WGS84 +datum=WGS84 +units=m +no_defs +x_0=267796 +y_0=-4.183e+06 +over +south
+EOL1DSARSAO1A14948810,2024-SEP-07,173556.32,5973943.4,43.551,-42.328,365007.62,5673243.56,+proj=utm +zone=21 +ellps=WGS84 +datum=WGS84 +units=m +no_defs +x_0=269118 +y_0=-4.17507e+06 +over +south
+EOL1DSARSAO1A14948812,2024-DEC-28,169009.53,5979439.37,43.643,-42.302,367847.1,5654056.21,+proj=utm +zone=21 +ellps=WGS84 +datum=WGS84 +units=m +no_defs +x_0=268659 +y_0=-4.18183e+06 +over +south
+EOL1DSARSAO1A14948841,2024-SEP-23,171221.92,5988256.12,43.62,-42.292,369824.62,5662986.25,+proj=utm +zone=21 +ellps=WGS84 +datum=WGS84 +units=m +no_defs +x_0=270746 +y_0=-4.17297e+06 +over +south
+EOL1DSARSAO1A14948886,2024-OCT-25,170389.31,5989784.18,43.626,-42.294,369018.23,5664539.74,+proj=utm +zone=21 +ellps=WGS84 +datum=WGS84 +units=m +no_defs +x_0=269916 +y_0=-4.17142e+06 +over +south
+EOL1DSARSAO1A14948973,2024-AUG-06,169707.08,5986692.06,43.633,-42.297,368413.6,5661383.09,+proj=utm +zone=21 +ellps=WGS84 +datum=WGS84 +units=m +no_defs +x_0=269276 +y_0=-4.17455e+06 +over +south
+EOL1DSARSAO1A15392623,2024-DEC-12,173203.54,5992045.48,43.602,-42.285,371636.16,5666872.3,+proj=utm +zone=21 +ellps=WGS84 +datum=WGS84 +units=m +no_defs +x_0=272642 +y_0=-4.16913e+06 +over +south

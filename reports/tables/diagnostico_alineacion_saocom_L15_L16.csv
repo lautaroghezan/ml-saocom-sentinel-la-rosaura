@@ -1,0 +1,3 @@
+lote_id,pixeles_fecha_1,pixeles_fecha_2,distancia_min_m,distancia_mediana_m,distancia_max_m,pct_distancia_20m,pct_distancia_30m,centros_unicos_asociados
+L15,56,57,20.007875399184822,20.457120697247568,26.50162288565469,0.0,100.0,51
+L16,58,56,20.19503243129928,20.831042624684187,38.19173997088754,0.0,98.21428571428571,50
