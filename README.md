@@ -226,3 +226,32 @@ de rendimiento.
 Una aplicación operativa futura requerirá
 calibración, datos de campo, nuevas campañas
 y evaluación independiente.
+
+
+## Ejecucion del notebook final
+
+El notebook principal es:
+
+`notebooks/analisis_final_L15_L16.ipynb`
+
+Para ejecutar el analisis en un entorno Python compatible,
+desde la raiz del repositorio:
+
+```powershell
+python -m pip install pandas numpy matplotlib scipy scikit-learn xgboost shap nbformat nbclient ipykernel ipython
+python validar_notebook_final_L15_L16.py
+```
+
+El notebook utiliza datasets procesados incluidos en el
+repositorio. No requiere descargar las imagenes SAOCOM
+originales para reproducir esta etapa analitica.
+
+Los scripts independientes permiten reconstruir las
+etapas previas, siempre que se disponga de sus insumos.
+
+**Advertencia metodologica:** la clasificacion supervisada
+reproduce pseudoetiquetas de clustering. Sus metricas no
+demuestran prediccion independiente de rendimiento agricola.
+
+La comparacion con XGBoost y su explicacion SHAP se
+encuentran dentro del notebook final.
