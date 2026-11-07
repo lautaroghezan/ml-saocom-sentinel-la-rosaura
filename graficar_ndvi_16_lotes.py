@@ -1,120 +1,118 @@
 ﻿from pathlib import Path
+import numpy as np
 import pandas as pd
-import geopandas as gpd
 import matplotlib.pyplot as plt
-from matplotlib.colors import Normalize
-from matplotlib.cm import ScalarMappable
+import matplotlib.dates as mdates
 
-BASE = Path.cwd()
-FECHA = "2024-12-03"
+ruta = Path("data/processed/dataset_sentinel2_intralote.csv")
+salida = Path("reports/figures/eda_ndvi_temporal_16_lotes.png")
+salida.parent.mkdir(parents=True, exist_ok=True)
 
-datos = pd.read_csv(
-    BASE / "data/processed/dataset_sentinel2_intralote.csv"
+df = pd.read_csv(ruta, parse_dates=["fecha"])
+
+# Total de pixeles espaciales de cada lote.
+totales = (
+    df[["lote_id", "fila", "columna"]]
+    .drop_duplicates()
+    .groupby("lote_id")
+    .size()
 )
 
-lotes = gpd.read_file(
-    BASE / "data/raw/vectores/potreros_la_rosaura.geojson"
-).to_crs("EPSG:32721")
-
-muestra = datos.loc[
-    datos["fecha"] == FECHA
+# Solo observaciones validas.
+df = df.loc[
+    df["valido_scl"].eq(True)
+    & np.isfinite(df["NDVI"])
 ].copy()
 
-validos = muestra.loc[
-    muestra["NDVI"].notna()
-].copy()
-
-if muestra.empty:
-    raise ValueError("No hay datos para la fecha seleccionada")
-
-fig, ax = plt.subplots(figsize=(13, 11))
-
-# Pixeles Sentinel-2 en su grilla espacial
-ax.scatter(
-    validos["x_utm"],
-    validos["y_utm"],
-    c=validos["NDVI"],
-    cmap="RdYlGn",
-    norm=Normalize(vmin=0, vmax=1),
-    marker="s",
-    s=65,
-    linewidths=0,
-    zorder=2
+# Mediana y cobertura por lote y fecha.
+serie = (
+    df.groupby(["lote_id", "fecha"], as_index=False)
+    .agg(
+        ndvi=("NDVI", "median"),
+        n=("NDVI", "size")
+    )
 )
 
-# Limites de los 16 lotes
-lotes.boundary.plot(
-    ax=ax,
-    color="black",
-    linewidth=1.2,
-    zorder=3
+serie["total"] = serie["lote_id"].map(totales)
+serie["cobertura"] = serie["n"] / serie["total"]
+serie = serie.loc[serie["cobertura"] >= 0.70].copy()
+
+lotes = sorted(totales.index.tolist())
+
+fig, axes = plt.subplots(
+    4, 4,
+    figsize=(17, 12),
+    sharex=True,
+    sharey=True
 )
 
-# Identificacion de cada lote
-for _, lote in lotes.iterrows():
-    centro = lote.geometry.representative_point()
-
-    ax.text(
-        centro.x,
-        centro.y,
-        lote["lote_id"],
-        fontsize=8,
-        fontweight="bold",
-        ha="center",
-        va="center",
-        color="black",
-        bbox=dict(
-            facecolor="white",
-            alpha=0.75,
-            edgecolor="none",
-            pad=1
-        ),
-        zorder=4
+for ax, lote in zip(axes.flat, lotes):
+    g = (
+        serie.loc[serie["lote_id"] == lote]
+        .sort_values("fecha")
     )
 
-barra = ScalarMappable(
-    norm=Normalize(vmin=0, vmax=1),
-    cmap="RdYlGn"
+    destacado = lote in ("L15", "L16")
+
+    ax.plot(
+        g["fecha"],
+        g["ndvi"],
+        marker="o",
+        markersize=3.5,
+        linewidth=2 if destacado else 1.3,
+        color="#D97706" if destacado else "#2563EB"
+    )
+
+    ax.set_title(
+        lote,
+        fontsize=11,
+        fontweight="bold"
+    )
+
+    ax.set_ylim(0, 1)
+    ax.grid(alpha=0.25)
+
+    if destacado:
+        ax.axvspan(
+            pd.Timestamp("2025-02-01"),
+            pd.Timestamp("2025-02-16"),
+            color="#F59E0B",
+            alpha=0.18
+        )
+
+    ax.xaxis.set_major_locator(
+        mdates.MonthLocator(interval=2)
+    )
+    ax.xaxis.set_major_formatter(
+        mdates.DateFormatter("%b %Y")
+    )
+    ax.tick_params(
+        axis="x",
+        labelrotation=45,
+        labelsize=8
+    )
+
+fig.suptitle(
+    "Evolucion temporal del NDVI por lote | La Rosaura",
+    fontsize=16,
+    fontweight="bold"
 )
-barra.set_array([])
 
-fig.colorbar(
-    barra,
-    ax=ax,
-    label="NDVI",
-    shrink=0.75
-)
+fig.supxlabel("Fecha")
+fig.supylabel("NDVI mediano intralote")
 
-ax.set_title(
-    f"La Rosaura - NDVI intralote - {FECHA}",
-    fontsize=15
-)
+fig.tight_layout(rect=[0.02, 0.02, 1, 0.96])
 
-ax.set_xlabel("Este UTM (m)")
-ax.set_ylabel("Norte UTM (m)")
-ax.set_aspect("equal")
-ax.grid(alpha=0.12)
-
-SALIDA = (
-    BASE / "reports/figures"
-    / "mapa_ndvi_16_lotes_20241203.png"
-)
-
-SALIDA.parent.mkdir(parents=True, exist_ok=True)
-
-plt.savefig(
-    SALIDA,
-    dpi=250,
+fig.savefig(
+    salida,
+    dpi=200,
     bbox_inches="tight"
 )
 
-plt.show()
+plt.close(fig)
 
-print("\n=== MAPA GENERAL NDVI ===")
-print("Fecha:", FECHA)
-print("Lotes representados:", muestra["lote_id"].nunique())
-print("Pixeles totales:", len(muestra))
-print("Pixeles validos:", len(validos))
-print("Cobertura:", round(100 * len(validos) / len(muestra), 2), "%")
-print("Figura guardada:", SALIDA)
-print("\nDiagnostico finalizado.")
+print("\nPASO 15C COMPLETADO")
+print("Grafico:", salida.resolve())
+print("Lotes representados:", len(lotes))
+print("Fechas con cobertura >= 70 %:", serie["fecha"].nunique())
+print("Observaciones lote-fecha:", len(serie))
