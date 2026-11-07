@@ -6,6 +6,64 @@
 
 Trabajo final de Ciencia de Datos II.
 
+## Contexto productivo y seleccion de lotes
+
+### El establecimiento La Rosaura
+
+La Rosaura es un establecimiento agropecuario ubicado en el
+partido de Tandil, provincia de Buenos Aires, Argentina,
+vinculado a la actividad tambera.
+
+Su sistema productivo comprende superficies destinadas a
+pasturas y al cultivo de maiz para la elaboracion de silo
+forrajero, utilizado como alimento para el rodeo lechero.
+
+En este contexto, conocer la variabilidad espacial de los
+cultivos puede contribuir al desarrollo futuro de herramientas
+de agricultura de precision y apoyo a las decisiones de manejo.
+
+### Identificacion de los lotes
+
+Para el analisis territorial se consideran 16 lotes del
+establecimiento, identificados como L01 a L16.
+
+Los lotes constituyen las unidades espaciales de referencia
+para organizar la informacion satelital. No deben confundirse
+con los ambientes de manejo, que son agrupamientos exploratorios
+identificados dentro de cada lote.
+
+### Seleccion de L15 y L16
+
+Del conjunto de lotes se seleccionaron L15 y L16 como casos
+piloto del estudio, asociados al cultivo de maiz destinado
+a silo forrajero durante la campana 2024-2025.
+
+Esta asociacion y la cosecha prevista durante febrero de 2025
+son antecedentes agronomicos aportados al estudio; no fueron
+verificados con registros de campo independientes.
+
+La seleccion de estos lotes no constituye una muestra
+estadistica representativa de los 16 lotes del establecimiento.
+Tampoco se dispone de evidencia para afirmar que su seleccion
+respondio a un criterio agronomico comparativo formal.
+
+### Vinculacion con el problema de Ciencia de Datos
+
+El proyecto explora si la integracion de observaciones
+opticas Sentinel-2 y radar SAOCOM permite caracterizar
+patrones espaciales y temporales dentro de los lotes piloto.
+
+Se aplican tecnicas de aprendizaje no supervisado para
+identificar agrupamientos espectrales y radar, y modelos
+supervisados para estudiar la reproducibilidad de esas
+pseudoetiquetas.
+
+Los agrupamientos no equivalen a ambientes productivos
+validados. Para una aplicacion agronomica operativa se
+requeririan mediciones independientes de rendimiento,
+suelo, biomasa y manejo, entre otras.
+
+
 ## 1. Resumen
 
 Este proyecto desarrolla una prueba de concepto de integración
