@@ -1,0 +1,17 @@
+lote_id,orientacion,objetivo,fold,datos,n_train,n_test,test_clase_1,test_clase_2,balanced_accuracy,f1_macro,errores,tn_11,error_12,error_21,tn_22
+L15,Norte_Sur,Etiquetas_opticas,1,Optico,28,24,2,22,1.0,1.0,0,2,0,0,22
+L15,Norte_Sur,Etiquetas_opticas,1,Multisensor,28,24,2,22,0.9772727272727273,0.8883720930232558,1,2,0,1,21
+L15,Norte_Sur,Etiquetas_opticas,2,Optico,33,19,13,6,1.0,1.0,0,13,0,0,6
+L15,Norte_Sur,Etiquetas_opticas,2,Multisensor,33,19,13,6,0.7307692307692308,0.631578947368421,7,6,7,0,6
+L15,Norte_Sur,Etiquetas_multisensor,1,Optico,28,24,2,22,1.0,1.0,0,2,0,0,22
+L15,Norte_Sur,Etiquetas_multisensor,1,Multisensor,28,24,2,22,0.9545454545454546,0.8095238095238095,2,2,0,2,20
+L15,Norte_Sur,Etiquetas_multisensor,2,Optico,33,19,14,5,0.9642857142857143,0.936026936026936,1,13,1,0,5
+L15,Norte_Sur,Etiquetas_multisensor,2,Multisensor,33,19,14,5,0.7142857142857143,0.5777777777777777,8,6,8,0,5
+L16,Este_Oeste,Etiquetas_opticas,1,Optico,33,22,17,5,1.0,1.0,0,17,0,0,5
+L16,Este_Oeste,Etiquetas_opticas,1,Multisensor,33,22,17,5,1.0,1.0,0,17,0,0,5
+L16,Este_Oeste,Etiquetas_opticas,2,Optico,34,21,20,1,1.0,1.0,0,20,0,0,1
+L16,Este_Oeste,Etiquetas_opticas,2,Multisensor,34,21,20,1,1.0,1.0,0,20,0,0,1
+L16,Este_Oeste,Etiquetas_multisensor,1,Optico,33,22,17,5,1.0,1.0,0,17,0,0,5
+L16,Este_Oeste,Etiquetas_multisensor,1,Multisensor,33,22,17,5,1.0,1.0,0,17,0,0,5
+L16,Este_Oeste,Etiquetas_multisensor,2,Optico,34,21,20,1,1.0,1.0,0,20,0,0,1
+L16,Este_Oeste,Etiquetas_multisensor,2,Multisensor,34,21,20,1,1.0,1.0,0,20,0,0,1

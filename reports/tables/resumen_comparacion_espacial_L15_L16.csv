@@ -1,0 +1,9 @@
+lote_id,objetivo,datos,folds,BA_media,F1_media,errores_totales,evaluaciones
+L15,Etiquetas_multisensor,Multisensor,2,0.8344155844155845,0.6936507936507936,10,43
+L15,Etiquetas_multisensor,Optico,2,0.9821428571428572,0.968013468013468,1,43
+L15,Etiquetas_opticas,Multisensor,2,0.8540209790209791,0.7599755201958385,8,43
+L15,Etiquetas_opticas,Optico,2,1.0,1.0,0,43
+L16,Etiquetas_multisensor,Multisensor,2,1.0,1.0,0,43
+L16,Etiquetas_multisensor,Optico,2,1.0,1.0,0,43
+L16,Etiquetas_opticas,Multisensor,2,1.0,1.0,0,43
+L16,Etiquetas_opticas,Optico,2,1.0,1.0,0,43

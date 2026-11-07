@@ -1,0 +1,9 @@
+lote_id,datos,clasificador,BA_media,BA_std,F1_media,F1_std
+L15,Multisensor,Random_Forest,0.956,0.049,0.955,0.054
+L15,Multisensor,Regresion_logistica,0.956,0.058,0.954,0.057
+L15,Optico,Random_Forest,1.0,0.0,1.0,0.0
+L15,Optico,Regresion_logistica,1.0,0.0,1.0,0.0
+L16,Multisensor,Random_Forest,0.875,0.137,0.909,0.1
+L16,Multisensor,Regresion_logistica,0.875,0.209,0.881,0.214
+L16,Optico,Random_Forest,0.943,0.098,0.917,0.095
+L16,Optico,Regresion_logistica,0.99,0.024,0.967,0.081
