@@ -1,5 +1,8 @@
 # Identificación exploratoria de ambientes de manejo en maíz para silo
 
+**Autor:** Lautaro Ghezan  
+**Asignatura:** Ciencia de Datos II
+
 ## Fusión multisensor SAOCOM–Sentinel-2
 
 **Establecimiento La Rosaura — Tandil, Buenos Aires, Argentina**
