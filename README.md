@@ -36,7 +36,7 @@ identificados dentro de cada lote.
 
 Del conjunto de lotes se seleccionaron L15 y L16 como casos
 piloto del estudio, asociados al cultivo de maiz destinado
-a silo forrajero durante la campana 2024-2025.
+a silo forrajero durante la campa?a 2024-2025.
 
 Esta asociacion y la cosecha prevista durante febrero de 2025
 son antecedentes agronomicos aportados al estudio; no fueron
