@@ -67,6 +67,44 @@ requeririan mediciones independientes de rendimiento,
 suelo, biomasa y manejo, entre otras.
 
 
+## Construcción de la constelación virtual SAOCOM–Sentinel-2
+
+En este proyecto, una constelación virtual se entiende como
+la integración analítica de observaciones procedentes de
+sistemas satelitales independientes, sin modificar sus
+órbitas, operaciones ni infraestructura física.
+
+La constelación virtual SAOCOM–Sentinel-2 se construye
+mediante las siguientes etapas:
+
+1. **Selección territorial:** delimitación de los lotes
+   piloto L15 y L16 del establecimiento La Rosaura.
+2. **Adquisición multisensor:** incorporación de
+   observaciones ópticas Sentinel-2 y radar SAOCOM.
+3. **Armonización espacial:** reproyección a EPSG:32721
+   y organización sobre una grilla analítica común
+   de 44 x 44 metros.
+4. **Armonización temporal:** asociación de observaciones
+   mediante una ventana de emparejamiento de +/- 5 días.
+5. **Integración de atributos:** combinación de los
+   índices ópticos NDVI, NDRE y NDMI con las variables
+   radar disponibles.
+6. **Evaluación:** comparación de agrupamientos
+   ópticos y multisensor y cuantificación de
+   oportunidades adicionales de observación.
+
+Esta construcción es una arquitectura de integración
+de datos y no una constelación física nueva. Tampoco
+implica cobertura diaria continua ni equivalencia entre
+las mediciones ópticas y radar.
+
+La complementariedad temporal se evidencia en 294
+observaciones radar celda-fecha sin pareja óptica
+válida dentro de la ventana de emparejamiento.
+Sin embargo, los resultados no demuestran una mejora
+agronómica independiente en la delimitación de
+ambientes de manejo.
+
 ## 1. Resumen
 
 Este proyecto desarrolla una prueba de concepto de integración
