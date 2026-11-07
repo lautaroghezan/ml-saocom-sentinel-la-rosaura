@@ -1,4 +1,4 @@
-# Identificación exploratoria de ambientes de manejo en maíz para silo
+# Identificación exploratoria de ambientes de manejo en maíz para silo forrajero
 
 **Autor:** Lautaro Ghezan  
 **Asignatura:** Ciencia de Datos II
